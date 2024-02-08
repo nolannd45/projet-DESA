@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 
 const updateUser = async (req, res) => {
   if (req.params.id == req.user.id){
-    const { email, pseudo, password } = req.body;
+    const { email, pseudo, password, priv } = req.body;
 
       const saltRounds = 10;
 

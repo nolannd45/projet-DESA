@@ -1,10 +1,10 @@
-import Media from "../../models/media.js";
+import User from "../../models/media.js";
 
   export async function readUser (req, res)  {
     try 
     {
-        const medias = await User.find({});
-        res.status(200).send(medias);    
+        const users = await User.find({});
+        res.status(200).send(users);    
     } catch (error) 
     {
       console.log(error);

@@ -2,8 +2,6 @@ import { BlobServiceClient } from '@azure/storage-blob';
 import 'dotenv/config';
 import { MongoClient } from "mongodb";
 
-
-
 const mongodbUri = process.env.MONGODB_URI;
 const accountName = process.env.ACCOUNT_NAME;
 const sasToken = process.env.SAS_TOKEN;

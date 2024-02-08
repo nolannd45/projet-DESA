@@ -7,6 +7,7 @@ const createUser = async (req, res) => {
       email: yup.string().email().required(),
       pseudo: yup.string().required(),
       password: yup.string().required(),
+      priv: yup.boolean().required()
     });
     let test = await param.isValid(req.body)
     
@@ -14,13 +15,13 @@ const createUser = async (req, res) => {
     {
       if (test)
       {
-        var { email, pseudo, password } = req.body;
+        var { email, pseudo, password, priv } = req.body;
         
         
             const nbtours = 10;
             password = bcrypt.hashSync(password, nbtours);
 
-            const newUser = new User({ email, pseudo, password });
+            const newUser = new User({ email, pseudo, password, priv});
             const savedUser = await newUser.save();
             res.status(201).send(savedUser);
                  

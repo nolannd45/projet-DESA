@@ -4,6 +4,12 @@ import express from "express";
 import mongoose from "mongoose";
 import login from "./controlers/login.js";
 import webtoken from "./middleware/webtoken.js";
+
+import createComment from "./controlers/comments/createComment.js";
+import delComment from "./controlers/comments/delComment.js";
+import { readComment } from "./controlers/comments/readComment.js";
+import updateComment from "./controlers/comments/updateComment.js";
+
 import createUser from "./controlers/user/createUser.js";
 import deleteUser from "./controlers/user/deleteUser.js";
 import updateUser from "./controlers/user/updateUser.js";
@@ -31,8 +37,8 @@ mongoose
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-app.listen(3000, () => {
-  console.log("API en écoute sur le port 3000");
+app.listen(8080, () => {
+  console.log("API en écoute sur le port 8080");
 });
 
 app.get("/media/read", readMedia);
@@ -43,7 +49,12 @@ app.delete("/media/delete/:id", delMedia);
 app.post("/user/create", createUser);
 app.delete("/user/delete/:id", webtoken, deleteUser);
 app.put("/user/update/:id", webtoken, updateUser);
-app.post("/user/read", readUser);
+app.get("/user/read", readUser);
+
+app.post("/comment/create/:id", webtoken, createComment);
+app.delete("/comment/delete/:id", webtoken, delComment);
+app.put("/comment/update/:id", webtoken, updateComment);
+app.get("/comment/read", readComment);
 
 app.post("/login", login);
 
